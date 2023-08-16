@@ -6,6 +6,7 @@ const bbsName = urlParams.get('bbs');
 const datListDiv = document.getElementById('datList');
 const pageButtonsDiv = document.getElementById('pageButtons');
 const pageTitle = document.getElementById('pageTitle');
+const Title = document.getElementById('Title');
 
 // アイテムの数やページ数を管理する変数
 const itemsPerPage = 20; // 1ページあたりのアイテム数
@@ -24,13 +25,16 @@ function fetchBoardTitle(bbsName) {
       if (titleMatch && titleMatch[1]) {
         boardTitle = titleMatch[1];
         pageTitle.textContent = boardTitle;
+        Title.textContent = boardTitle;
       } else {
         pageTitle.textContent = 'DATファイル選択';
+        Title.textContent = 'DATファイル選択';
       }
     })
     .catch(error => {
       console.error('Error fetching board title:', error);
       pageTitle.textContent = 'DATファイル選択';
+      Title.textContent = 'DATファイル選択';
     });
 }
 
