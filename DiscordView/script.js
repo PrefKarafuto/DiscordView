@@ -24,7 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
       const data = decoder.decode(buffer);
       const lines = data.split('\n');
       const title = lines[0].split('<>')[4];
-      titleContainer.textContent = title;
+      
+      const decodedTitle = document.createElement('textarea');
+      decodedTitle.innerHTML = title;
+      const decodedTitleText = decodedTitle.value;
+      titleContainer.textContent = decodedTitleText;
 
       let currentPost = {};
       let postId = 1; // 初期ID
@@ -42,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
             name: parts[0],
             email: parts[1],
             datetime: parts[2].replace(/ ID:(.*)/, ''),
-            id: parts[2].match(/ID:(.*)/) ? parts[2].match(/ID:(.*)/)[1] : '',
+            id: parts[2].match(/ID:(.*)/) ? parts[2].match(/ID:(.*)/)[1] : 'none',
             content: parts[3],
             title: parts[4]
           };
