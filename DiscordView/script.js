@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
       let postId = 1; // 初期ID
 
       lines.slice(0).forEach(line => {
-        const parts = line.split('<>');
+        const parts = line.replace(/<b>|<\/b>/g,'').split('<>');
         if (parts.length === 5) {
           if (currentPost.content) {
             displayPost(currentPost, postId);
@@ -39,11 +39,12 @@ window.addEventListener('DOMContentLoaded', () => {
           currentPost = {
             name: parts[0],
             email: parts[1],
-            datetime: parts[2].replace(/ ID:(.*)/, ''),
-            id: parts[2].match(/ID:(.*)/)[1],
+            datetime: parts[2].match(/ ID:(.*)/) ? parts[2].replace(/ ID:(.*)/, '') : '',
+            id: parts[2].match(/ID:(.*)/) ? parts[2].match(/ID:(.*)/)[1] : '',
             content: parts[3],
             title: parts[4]
           };
+          
         } else {
           currentPost.content += '\n' + line;
         }
