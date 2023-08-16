@@ -28,6 +28,7 @@ a {
   text-decoration: none;
   color: #7289DA;
   font-weight: bold;
+  display: block
 }
 @media screen and (max-width: 480px) {
   li {
@@ -52,5 +53,5 @@ a {
 }
 .page-buttons button:disabled {
   background-color: #999;
-  cursor: not-allowed;
+  cursor: default;
 }
