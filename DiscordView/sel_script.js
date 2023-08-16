@@ -41,8 +41,9 @@ function fetchBoardTitle(bbsName) {
 // ページボタンを更新する関数
 function updatePageButtons() {
   pageButtonsDiv.innerHTML = '';
-  const minPage = Math.max(currentPage - 2, 1);
-  const maxPage = Math.min(currentPage + 2, totalPages);
+  const minPage = Math.max(currentPage - 1, 1);
+  const maxPage = Math.min(currentPage + 1, totalPages);
+  
   for (let i = minPage; i <= maxPage; i++) {
     const pageButton = document.createElement('button');
     pageButton.textContent = i;
@@ -57,6 +58,7 @@ function updatePageButtons() {
     });
     pageButtonsDiv.appendChild(pageButton);
   }
+
   const prevButton = document.createElement('button');
   prevButton.textContent = '前';
   if (currentPage === 1) {
@@ -69,6 +71,7 @@ function updatePageButtons() {
       displayItems(currentPage);
     }
   });
+
   const nextButton = document.createElement('button');
   nextButton.textContent = '次';
   if (currentPage === totalPages) {
@@ -81,8 +84,14 @@ function updatePageButtons() {
       displayItems(currentPage);
     }
   });
+
+  const pageCounter = document.createElement('div');
+  pageCounter.textContent = `${currentPage} / ${totalPages}`; // 総ページ数を表示
+  pageCounter.classList.add('page-counter');
+
   pageButtonsDiv.insertBefore(prevButton, pageButtonsDiv.firstChild);
   pageButtonsDiv.appendChild(nextButton);
+  pageButtonsDiv.appendChild(pageCounter);
 }
 
 // アイテムを表示する関数
@@ -105,7 +114,6 @@ function displayItems(page) {
     datListItem.appendChild(datLink);
     datListDiv.appendChild(datListItem);
 }
-
   updatePageButtons();
 }
 
