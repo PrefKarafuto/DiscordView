@@ -94,11 +94,17 @@ function displayItems(page) {
   for (let i = startIndex; i < endIndex; i++) {
     const datLink = document.createElement('a');
     datLink.href = `read.html?bbs=${bbsName}&dat=${items[i].datFileName.replace('.dat','')}`;
-    datLink.textContent = items[i].title;
+    
+    // デコードされたタイトルを取得し、textContentに設定
+    const decodedTitle = document.createElement('textarea');
+    decodedTitle.innerHTML = items[i].title;
+    const decodedTitleText = decodedTitle.value;
+    datLink.textContent = decodedTitleText;
+    
     const datListItem = document.createElement('li');
     datListItem.appendChild(datLink);
     datListDiv.appendChild(datListItem);
-  }
+}
 
   updatePageButtons();
 }
@@ -115,12 +121,12 @@ if (!bbsName) {
     const decoder = new TextDecoder('Shift-JIS');
     const data = decoder.decode(buffer);
     const lines = data.split('\n');
-      items = lines.map(line => {
-        const [datFileName, title] = line.split('<>');
-        return { datFileName, title };
-      });
-      totalPages = Math.ceil(items.length / itemsPerPage);
-      updatePageButtons();
-      displayItems(currentPage);
+    items = lines.map(line => {
+      const [datFileName, title] = line.split('<>');
+      return { datFileName, title };
     });
+    totalPages = Math.ceil(items.length / itemsPerPage);
+    updatePageButtons();
+    displayItems(currentPage);
+  });
 }
