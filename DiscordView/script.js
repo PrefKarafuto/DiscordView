@@ -30,7 +30,9 @@ window.addEventListener('DOMContentLoaded', () => {
       let postId = 1; // 初期ID
 
       lines.slice(0).forEach(line => {
-        const parts = line.replace(/<b>|<\/b>/g,'').split('<>');
+        const parts = line.replace(/<br>/g,'\n').replace(/<hr>/g,'!&lt;hr&gt;!')
+        .replace(/<[A-Za-z0-9_"':\/?=& .,]+>/g,'')
+        .replace(/\n/g,'<br>').replace(/!&lt;hr&gt;!/g,'<hr>').split('<>');
         if (parts.length === 5) {
           if (currentPost.content) {
             displayPost(currentPost, postId);
@@ -39,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
           currentPost = {
             name: parts[0],
             email: parts[1],
-            datetime: parts[2].match(/ ID:(.*)/) ? parts[2].replace(/ ID:(.*)/, '') : '',
+            datetime: parts[2].replace(/ ID:(.*)/, ''),
             id: parts[2].match(/ID:(.*)/) ? parts[2].match(/ID:(.*)/)[1] : '',
             content: parts[3],
             title: parts[4]
@@ -73,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const contentDiv = document.createElement('div');
     contentDiv.classList.add('content');
-    contentDiv.innerHTML = post.content.replace(/https?:\/\/[^\s]+/g, '<a href="$&" target="_blank">$&</a>');
+    contentDiv.innerHTML = post.content.replace(/https?:\/\/[\w\/,.%&?=-]+/g, '<a href="$&" target="_blank">$&</a>');
 
     postDiv.appendChild(nameAndIdDiv);
     postDiv.appendChild(emailDiv);
