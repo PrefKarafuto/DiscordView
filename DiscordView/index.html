@@ -2,18 +2,31 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="DATファイル選択ページ">
   <title id="Title">DATファイル選択</title>
   <link rel="stylesheet" href="sel_styles.css">
 </head>
 <body>
   <h1 id="pageTitle">DATファイル選択</h1>
+  <div id="hitLineCount">
+    <div id="itemCount"></div>
+  </div>
+  <div class="search-container">
+  <input type="text" id="searchInput" placeholder="スレタイ検索">
+  <button id="searchButton">検索</button>
+  </div>
+  <hr>
   <ul id="datList"></ul>
   <div class="page-buttons">
     <div id="pageButtons"></div>
   </div>
   <br>
+  <div id="repLink">
+    <a href="https://github.com/PrefKarafuto/New_0ch_Plus">
+      ぜろちゃんねるプラス再開発プロジェクト
+    </a>
+  </div>
   <script src="sel_script.js"></script>
 </body>
 </html>
