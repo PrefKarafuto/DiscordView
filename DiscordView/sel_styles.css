@@ -36,13 +36,6 @@ a {
   }
 }
 /* ページボタンスタイル */
-.page-buttons {
-  text-align: center;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .page-buttons button {
   background-color: #7289DA;
   color: #FFF;
@@ -54,4 +47,62 @@ a {
 .page-buttons button:disabled {
   background-color: #999;
   cursor: default;
+}
+/* ページボタンスタイル */
+.page-buttons {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* カウンターを下に配置 */
+}
+.page-counter {
+  margin-top: 10px; /* カウンターの上の余白 */
+}
+
+/* 検索ボックスとボタンを囲むコンテナのスタイル */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 中央寄せ */
+  margin: 20px auto;
+  max-width: 600px; /* コンテナの最大幅 */
+}
+
+/* 検索ボックス全体のスタイル */
+#searchInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px; /* 左上と左下の角を丸く */
+}
+
+/* 検索ボタンのスタイル */
+#searchButton {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0; /* 右上と右下の角を丸く */
+  cursor: pointer;
+}
+/* lineCount のスタイル */
+#hitLineCount {
+  font-size: 20px;
+  color: #666;
+  margin-top: 10px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* itemCount のスタイル */
+#itemCount {
+  font-size: 20px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+}
+#repLink {
+  font-size: 14px;
 }
